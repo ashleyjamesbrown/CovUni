@@ -10,10 +10,10 @@ int childCount=0;
 
 void setup() {
   size(800, 800, P3D); //esnure to use 3d renderer
-  
+
   // load 3d object .obj file from the data directory. to display texture the .mtl must be present also
-  s = loadShape("emerald.obj"); 
-  
+  s = loadShape("untitled.obj"); 
+
   background(0);
 
   //// print all vertices
@@ -31,15 +31,15 @@ void draw() {
   directionalLight(26, 16, 126, 0, 0, -1);
   ambientLight(102, 102, 102);
   translate(width/2, height/2);
-  
+
   rotateZ(frameCount*0.01);
   rotateX(frameCount*0.01);
   scale(7);
-  
+
   background(0);
   shape(s, 0, 0, 80, 80);
- 
- // mash();
+
+  // mash();
 }
 
 
@@ -73,12 +73,16 @@ void keyPressed() {
   saveFrame("obj_glitch-###.jpg");
 }
 
-void mash(){
- // take every triangle mesh that exists and alter its first vertex only.
- for (int x=0; x < childCount; x++){
-    PVector v = new PVector(s.getChild(x).getVertexX(0)+random(-5,5),s.getChild(x).getVertexY(0)+random(-5,5),s.getChild(x).getVertexZ(0)+random(-5,5)); 
-     s.getChild(x).setVertex(0, v); 
-  // s.getChild(x).setVertex(1, v); 
-  // s.getChild(x).setVertex(2, n);
-  } 
+void mash() {
+  // take every triangle mesh that exists and alter its first vertex only.
+  for (int n=0; n < childCount; n++) {
+    
+    PVector x = new PVector(s.getChild(n).getVertexX(0)+random(-5, 5), s.getChild(n).getVertexY(0)+random(-5, 5), s.getChild(n).getVertexZ(0)+random(-5, 5)); 
+    s.getChild(n).setVertex(0, x); 
+    
+    //PVector y = new PVector(s.getChild(n).getVertexX(0)+random(-5, 5), s.getChild(n).getVertexY(0)+random(-5, 5), s.getChild(n).getVertexZ(0)+random(-5, 5)); 
+    //s.getChild(n).setVertex(1, y); 
+    //PVector z = new PVector(s.getChild(n).getVertexX(0)+random(-5, 5), s.getChild(n).getVertexY(0)+random(-5, 5), s.getChild(n).getVertexZ(0)+random(-5, 5)); 
+    //s.getChild(n).setVertex(2, z);
+  }
 }
