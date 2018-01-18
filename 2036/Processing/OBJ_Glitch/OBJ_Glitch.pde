@@ -70,7 +70,8 @@ int getChildrenVertexCount(PShape shape) {
 
 void keyPressed() {
   mash();
-  saveFrame("obj_glitch-###.jpg");
+  saveFrame("obj_glitch-###.jpg");//saves screenshot
+  
 }
 
 void mash() {
