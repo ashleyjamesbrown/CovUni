@@ -12,7 +12,7 @@ void setup() {
   size(800, 800, P3D); //esnure to use 3d renderer
 
   // load 3d object .obj file from the data directory. to display texture the .mtl must be present also
-  s = loadShape("untitled.obj"); 
+  s = loadShape("emerald.obj"); 
 
   background(0);
 
@@ -75,15 +75,18 @@ void keyPressed() {
 }
 
 void mash() {
+  
+  float minR = 1.03;
+  float maxR = 5.07;
   // take every triangle mesh that exists and alter its first vertex only.
   for (int n=0; n < childCount; n++) {
     
-    PVector x = new PVector(s.getChild(n).getVertexX(0)+random(-5, 5), s.getChild(n).getVertexY(0)+random(-5, 5), s.getChild(n).getVertexZ(0)+random(-5, 5)); 
-    s.getChild(n).setVertex(0, x); 
+    PVector point1 = new PVector(s.getChild(n).getVertexX(0), s.getChild(n).getVertexY(0), s.getChild(n).getVertexZ(0)+random(minR, maxR)); 
+    s.getChild(n).setVertex(0, point1); 
     
-    //PVector y = new PVector(s.getChild(n).getVertexX(0)+random(-5, 5), s.getChild(n).getVertexY(0)+random(-5, 5), s.getChild(n).getVertexZ(0)+random(-5, 5)); 
-    //s.getChild(n).setVertex(1, y); 
-    //PVector z = new PVector(s.getChild(n).getVertexX(0)+random(-5, 5), s.getChild(n).getVertexY(0)+random(-5, 5), s.getChild(n).getVertexZ(0)+random(-5, 5)); 
-    //s.getChild(n).setVertex(2, z);
+   // PVector point2 = new PVector(s.getChild(n).getVertexX(0)+random(minR, maxR), s.getChild(n).getVertexY(0)+random(minR, maxR), s.getChild(n).getVertexZ(0)+random(minR, maxR)); 
+   // s.getChild(n).setVertex(1, point2); 
+   // PVector point3 = new PVector(s.getChild(n).getVertexX(0)+random(minR, maxR), s.getChild(n).getVertexY(0)+random(minR, maxR), s.getChild(n).getVertexZ(0)+random(minR, 5)); 
+   // s.getChild(n).setVertex(2, point3);
   }
 }
