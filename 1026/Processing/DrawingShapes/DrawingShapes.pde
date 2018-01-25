@@ -1,7 +1,7 @@
 // student name
 // date
 // sketch title
-// brief description
+// drawing with 2d shapes and random numbers
 
 float x = 0;
 float y = 0;
