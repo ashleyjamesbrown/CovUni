@@ -36,4 +36,5 @@ void draw() {
 
 
 void keyPressed() {
+  saveFrame("mosiac-###.jpg");
 }
