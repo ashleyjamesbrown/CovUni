@@ -1,0 +1,44 @@
+// 1026MAPA
+// ashley james brown
+// audio input
+
+
+import processing.sound.*;
+
+AudioIn input;
+Amplitude rms;
+
+int scale=1;
+float threshold = 60;
+
+
+void setup() {
+  size(400, 400);
+  
+  input = new AudioIn(this, 0);
+  input.start();
+  rms = new Amplitude(this);
+  rms.input(input);
+  
+}
+
+
+void draw() {
+  background(0);
+  
+  scale=int(map(rms.analyze(), 0, 0.5, 1, 350));
+  
+  println(scale);
+  
+  noStroke();
+  fill(255, 0, 150);
+  ellipse(width/2, height/2, 1*scale, 1*scale);
+  
+  
+  
+  if (scale > threshold){
+     println("hit the threshold");
+  }
+  
+  
+}
