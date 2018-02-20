@@ -2,21 +2,23 @@
  class Particle {
   float x;
   float y;
+  float z;
+  
   float lifespan;
-  
-  
+    
   PVector loc;  //location
   PVector vel;  //velocity
   PVector acc;  //acceleartion
   
   
-    Particle(float px, float py) {
+   Particle(float px, float py, float pz) {
     x = px;
     y = py;
+    z = pz;
     
-    acc = new PVector(0, 0);
-    vel = new PVector(random(-1,1), random(-1,1));
-    loc =  new PVector(x, y);
+    acc = new PVector(0, 0, 0);
+    vel = new PVector(random(-5,5), random(-5,5), random(-5,5));
+    loc =  new PVector(x, y, z);
    
     lifespan= 255;
   }
@@ -32,8 +34,8 @@
     
     vel.add(acc);
     
-    PVector r = PVector.random2D();
-    r.mult(0.15); 
+    PVector r = PVector.random3D();
+    r.mult(0.35); 
     vel.add(r);
     
     loc.add(vel);
@@ -41,30 +43,21 @@
     acc.mult(0);
     
     
-      if (loc.x <= 0){
-     loc.x = width;
-    }
-    if (loc.x >= width){
-     loc.x = 0;
-    }
-    if (loc.y <= 0){
-     loc.y = height;
-    }
-    if (loc.y >= height){
-     loc.y = 0;
-    }
-    
     
     lifespan-=2;
   }
   
    // Method to display
   void display() {
-    stroke(255, 255, 255, lifespan);
-    fill(255, 255, 255, lifespan);
-  
-    //point(loc.x, loc.y);
-    ellipse(loc.x, loc.y, 12, 12);
+    stroke(255, 255, 255, 255);
+    fill(255, 255, 255, 255);
+    // point(loc.x, loc.y, loc.z);
+    //ellipse(loc.x, loc.y, 12, 12);
+    
+    pushMatrix();
+    translate(loc.x,loc.y,loc.z);
+    sphere(5);
+    popMatrix();
   }
   
   
