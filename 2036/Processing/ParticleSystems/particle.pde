@@ -15,7 +15,7 @@
     y = py;
     
     acc = new PVector(0, 0);
-    vel = new PVector(random(-5,5), random(-12, -5));
+    vel = new PVector(random(-1,1), random(-1,1));
     loc =  new PVector(x, y);
    
     lifespan= 255;
@@ -32,11 +32,30 @@
     
     vel.add(acc);
     
+    PVector r = PVector.random2D();
+    r.mult(0.15); 
+    vel.add(r);
+    
     loc.add(vel);
     
     acc.mult(0);
     
-    lifespan-=5;
+    
+      if (loc.x <= 0){
+     loc.x = width;
+    }
+    if (loc.x >= width){
+     loc.x = 0;
+    }
+    if (loc.y <= 0){
+     loc.y = height;
+    }
+    if (loc.y >= height){
+     loc.y = 0;
+    }
+    
+    
+    lifespan-=2;
   }
   
    // Method to display
