@@ -11,16 +11,17 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  float s1 = analogRead(A0);
-  delay(10);
-  float s2 = analogRead(A0);
-  delay (10);
+//  float s1 = analogRead(A0);
 
-  Serial.print("S1:");
-  Serial.print(s1);
-  Serial.print(",");
+  delay(10);
+  float s2 = analogRead(A1);
+  delay (100);
+
+//  Serial.print("S1:");
+//  Serial.print(s1);
+//  Serial.print(",");
 
   Serial.print("S2:");
   Serial.print(s2);
-  Serial.print(",");
+  Serial.println(",");
 }
