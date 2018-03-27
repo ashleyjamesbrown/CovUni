@@ -26,10 +26,10 @@ void loop() {
 
   // if the sensor reading is greater than the threshold:
   if (sensorReading >= threshold) {
-    // toggle the status of the ledPin:
-    ledState = !ledState;
-    // update the LED pin itself:
-    digitalWrite(ledPin, ledState);
+//    // toggle the status of the ledPin:
+//    ledState = !ledState;
+//    // update the LED pin itself:
+//    digitalWrite(ledPin, ledState);
     // send the string "Knock!" back to the computer, followed by newline
     Serial.println("Knock!");
   }
