@@ -10,13 +10,13 @@ import themidibus.*;
 MidiBus myBus; // The MidiBus
 float bg=0;
 int[] keys = new int[85];
-
+int[] grid = new int[85];
 
 float x;
 float y;
 
-float pX= -10; //pitch x
-float pY= 500; //pitch y
+float noteX= -10; //pitch x of the key notes
+float noteY= 500; //pitch y of the key notes
 
 // this is how fast the main bar takes to mvoe to its new positions
 float speed = 0.025; // between 0.00 and 1.00
@@ -26,13 +26,21 @@ void setup() {
   noStroke();  
   
   MidiBus.list();
-  myBus = new MidiBus(this, 0, "MPKmini2"); //change this for your device.
+  myBus = new MidiBus(this, 1, "IAC Bus 1"); //change this for your device.
   
   int n=1;
   for (int i =60; i < 85; i++) {
     keys[i] = 40*n;
     n++;
   }
+  int nn=1;
+  for (int j = 40; j < 59; j++){
+   grid[j] = 50*nn;
+   nn+=1;
+  }
+  
+  
+  
   rectMode(CENTER);
 }
 
@@ -43,8 +51,8 @@ void draw() {
   rect(0, 0, width*2, height*2);
 
   //draw a large bar and move it based on the pitch
-  x = lerp(x, pX, speed); // this animates the bar
-  y = lerp(y, pY, speed); // this animates the bar
+  x = lerp(x, noteX, speed); // this animates the bar
+  y = lerp(y, noteY, speed); // this animates the bar
   
   fill(255);
   stroke(255);
@@ -63,12 +71,15 @@ void noteOn(int channel, int pitch, int velocity) {
   fill(255);
   
   //move the main bar about due to the pitch
-  pX = keys[pitch]-40;
-  pY = height/2;
+  noteX = keys[pitch]-40;
+  noteY = height/2;
   
   
   if (pitch <48) {
   // must be the square buttons and not keys
+    fill(255,0,255);
+    rect(grid[pitch],height/2,velocity*2,velocity*2);
+    
   } else {
     //must be the keys
     fill(255);
